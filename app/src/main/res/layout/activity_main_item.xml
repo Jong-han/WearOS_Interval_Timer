@@ -2,24 +2,26 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
+        <variable
+            name="data"
+            type="com.jh.watch2.TimerModel" />
     </data>
 
     <LinearLayout
+        android:id="@+id/parent"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white">
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tv"
+            android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/bg_main_item"
             android:gravity="center"
             android:padding="20dp"
-            android:text="아이템"
-            android:textSize="24dp"
-            android:textColor="@android:color/black" />
-
+            android:layout_margin="3dp"
+            android:text="@{data.title}"
+            android:textSize="14dp"/>
     </LinearLayout>
 </layout>

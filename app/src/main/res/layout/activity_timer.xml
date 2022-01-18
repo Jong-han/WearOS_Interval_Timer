@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.jh.watch2.ui.timer.TimerViewModel" />
+    </data>
+
+    <androidx.wear.widget.BoxInsetLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:deviceIds="wear">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_boxedEdges="none">
+
+            <androidx.wear.widget.CircularProgressLayout
+                android:id="@+id/progress_circular"
+                app:colorSchemeColors="@color/dark_green"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{`세트 : ` + viewModel.currentSet + `/` +viewModel.totalSetCount}"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{`세트 시간: ` + viewModel.setTime}"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{`쉬는 시간: ` + viewModel.restTime}"/>
+                    <LinearLayout
+                        android:padding="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/btn_start"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:gravity="center"
+                            android:background="@drawable/bg_timer_btn"
+                            android:layout_marginEnd="30dp"
+                            android:text="시작"/>
+                        <TextView
+                            android:id="@+id/btn_edit"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:gravity="center"
+                            android:background="@drawable/bg_timer_btn"
+                            android:text="편집"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.wear.widget.CircularProgressLayout>
+
+        </FrameLayout>
+    </androidx.wear.widget.BoxInsetLayout>
+</layout>
