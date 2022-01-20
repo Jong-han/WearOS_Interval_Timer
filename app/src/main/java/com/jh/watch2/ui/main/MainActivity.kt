@@ -1,14 +1,13 @@
 package com.jh.watch2.ui.main
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.wear.widget.WearableLinearLayoutManager
-import com.jh.watch2.TimerModel
+import com.jh.watch2.db.TimerModel
 import com.jh.watch2.databinding.ActivityMainBinding
+import com.jh.watch2.ui.add.RestTimeActivity
 import com.jh.watch2.ui.add.SetCountActivity
 import com.jh.watch2.ui.timer.TimerActivity
 import com.jh.watch2.util.CustomScrollingLayoutCallback
@@ -26,6 +25,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        android.util.Log.i("asdf", "onCreate")
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -33,23 +34,22 @@ class MainActivity : ComponentActivity() {
 
         binding.recyclerLauncherView.run {
             isEdgeItemsCenteringEnabled = true
-            layoutManager = WearableLinearLayoutManager(this@MainActivity, CustomScrollingLayoutCallback())
+            layoutManager =
+                WearableLinearLayoutManager(this@MainActivity, CustomScrollingLayoutCallback())
             adapter = mainAdapter
         }
 
         viewModel.clickAdd.observe(this, {
-            addTimerResult.launch( Intent(this, SetCountActivity::class.java) )
+            Intent(this, SetCountActivity::class.java).apply {
+                putExtra(TimerActivity.EXTRA_FROM, 0)
+                startActivity(this)
+            }
         })
 
         viewModel.timerList.observe(this, {
-            mainAdapter.submitList( it.toList() )
+            mainAdapter.submitList(it.toList())
         })
 
-    }
-    private val addTimerResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        if (it.resultCode== Activity.RESULT_OK) {
-            viewModel.addTimer()
-        }
     }
 
     private val clickTimer: (TimerModel)->Unit = {
@@ -57,6 +57,14 @@ class MainActivity : ComponentActivity() {
             putExtra(EXTRA_TIMER, it)
             startActivity(this)
         }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        val timerModel = intent?.getParcelableExtra<TimerModel>(RestTimeActivity.EXTRA_TIMER_MODEL)
+//        timerModel?.let {
+//            viewModel.addTimer(it)
+//        }
     }
 
 }

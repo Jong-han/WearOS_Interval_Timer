@@ -56,12 +56,14 @@
                             android:gravity="center"
                             android:background="@drawable/bg_timer_btn"
                             android:layout_marginEnd="30dp"
+                            android:onClick="@{()->viewModel.onClickStart()}"
                             android:text="시작"/>
                         <TextView
                             android:id="@+id/btn_edit"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:gravity="center"
+                            android:onClick="@{()->viewModel.onClickEdit()}"
                             android:background="@drawable/bg_timer_btn"
                             android:text="편집"/>
                     </LinearLayout>

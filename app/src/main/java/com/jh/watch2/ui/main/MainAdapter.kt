@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.jh.watch2.TimerModel
+import com.jh.watch2.db.TimerModel
 import com.jh.watch2.databinding.ActivityMainItemBinding
 
 class MainAdapter(private val onClickItem: (TimerModel)->Unit): ListAdapter<TimerModel, MainAdapter.MainViewHolder>(MainDiffUtil()) {

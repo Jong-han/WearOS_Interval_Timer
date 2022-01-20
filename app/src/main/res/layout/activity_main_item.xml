@@ -4,24 +4,44 @@
     <data>
         <variable
             name="data"
-            type="com.jh.watch2.TimerModel" />
+            type="com.jh.watch2.db.TimerModel" />
     </data>
 
     <LinearLayout
         android:id="@+id/parent"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:layout_margin="3dp"
+        android:background="@drawable/bg_main_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_main_item"
             android:gravity="center"
-            android:padding="20dp"
-            android:layout_margin="3dp"
-            android:text="@{data.title}"
-            android:textSize="14dp"/>
+            android:text="@{`목표 세트 : ` + String.valueOf(data.setCount)}"
+            android:layout_weight="1"
+            android:textSize="10dp"/>
+        <TextView
+            android:id="@+id/tv_set_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{`세트 시간 : ` + String.valueOf(data.setInterval)}"
+            android:layout_weight="1"
+            android:textSize="10dp"/>
+        <TextView
+            android:id="@+id/tv_rest_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="@{`쉬는 시간 : ` + String.valueOf(data.restInterval)}"
+            android:textSize="10dp"/>
     </LinearLayout>
 </layout>

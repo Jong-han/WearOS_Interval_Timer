@@ -41,4 +41,12 @@ dependencies {
 
     implementation 'androidx.activity:activity-ktx:1.4.0'
     implementation 'androidx.fragment:fragment-ktx:1.4.0'
+
+    //RoomDB
+    implementation "androidx.room:room-runtime:2.4.1"
+    kapt "androidx.room:room-compiler:2.4.1"
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:2.4.1"
+    // optional - Test helpers
+    testImplementation "androidx.room:room-testing:2.4.1"
 }
